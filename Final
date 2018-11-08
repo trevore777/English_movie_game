@@ -1,0 +1,397 @@
+import os
+import random
+##import time
+import pygame
+from pygame.locals import *
+import sys
+# English game for grade 6 students in Comprehension.
+
+#Pygame screen int##
+###Screen size
+
+
+pygame.init()
+pygame.display.init()
+
+SCREEN_WIDTH=361
+SCREEN_HEIGHT=361
+size=(SCREEN_WIDTH,SCREEN_HEIGHT)
+screen=pygame.display.set_mode((360,360), 0, 24)
+
+###Play music ###
+pygame.mixer.music.load('music.mp3')
+pygame.mixer.music.play(-1)
+
+#Title
+pygame.display.set_caption("Movie images")
+
+# Background
+backgroundr=screen.get_rect()
+
+def image(i):
+    global screen
+    global backgroundr
+    screen.blit(i,backgroundr)
+    pygame.display.flip()
+    pygame.event.get()
+
+
+
+###Number guesing game #####
+
+def numbergame():
+    player_name = input ('What is your name for this game?')
+    count = 1
+    random_number = random.randint(1,100)
+    guess = int(input('Enter your number'))
+
+    while guess != random_number:
+            
+            if guess <= random_number:
+                image(pygame.image.load('tolow.png'))
+                print ('too low')
+                count = count +1
+                print (count)
+                guess = int(input('Enter your number'))
+            elif guess > random_number:
+                image(pygame.image.load('tohigh.png'))
+                print ('Too high')
+                count = count +1
+                print (count)
+                guess = int(input('Enter your number'))
+            else :
+                print ('Well done')
+
+    print (player_name +' guessed the number ' + str(random_number) + ' in ' + str(count) + ' goes. ')
+                 
+            
+##### ROOMS #####
+def adventure_room():
+    image(pygame.image.load('adventurescene.png'))
+    print ("This is a comprehension task")
+    print ("Instructions: Read the story on the left and pick the right answers to the questions.")
+	
+	
+    cat_clouds = ["dark", "white", "black"]
+    cat_trees = ["apple", "dead", "luminous"]
+    cat_actor = ["boy", "man", "girl"]
+    cat_house = ["cottage", "stone", "metal"]
+    cat_window = ["round", "curtains", "shutters"]
+    
+    mys_guess = []
+    mys_answer = ['white', 'apple', 'boy', 'cottage', 'shutters']
+    mys_guess = []
+    mys_answer = ['dark', 'dead', 'man', 'stone', 'curtains']
+    sci_guess = []
+    sci_answer = ['black', 'luminous', 'girl', 'metal', 'round']
+    
+    	
+    #print Question
+    print("Choose what type of clouds where there on the day? 1.dark 2. white, 3. black. ")
+	    
+    # Ask player what to do.
+    clouds = input("The clouds were  > ")
+
+    # This is a way to see if the text typed by player is in the list
+		
+    for i in cat_clouds:
+        if i in clouds:
+            adv_guess.append(i)
+            print (adv_guess)
+		
+    print("Choose what type of trees there were on the day? apple, dead, luminous" )
+		
+    # Ask player what to do.
+    trees = input("The trees were  > ")
+
+    # This is a way to see if the text typed by player is in the list
+    for i in cat_trees:
+        if i in trees:
+            adv_guess.append(i)
+            print ('the answer ' + str(adv_answer))
+            print ('the guess ' + str(adv_guess))
+
+    print("Choose what type of actor there was on the day? boy, girl, man ")
+		
+    # Ask player what to do.
+    actor = input("The actor was a  > ")
+
+    # This is a way to see if the text typed by player is in the list
+    for i in cat_actor:
+        if i in actor:
+            adv_guess.append(i)
+            print ('the answer ' + str(adv_answer))
+            print ('the guess ' + str(adv_guess))
+
+    print("Choose what type of house was it? cottage, stone, metal ")
+		
+    # Ask player what to do.
+    house = input("The a house was a  > ")
+
+    # This is a way to see if the text typed by player is in the list
+    for i in cat_house:
+        if i in house:
+            adv_guess.append(i)
+            print ('the answer ' + str(adv_answer))
+            print ('the guess ' + str(adv_guess))
+
+    print("What were the windows like? round, curtains, shutters ")
+		
+    # Ask player what to do.
+    window = input("What type of windows did the house have?  > ")
+
+    # This is a way to see if the text typed by player is in the list
+    for i in cat_window:
+        if i in window:
+            adv_guess.append(i)
+            print ('the answer ' + str(adv_answer))
+            print ('the guess ' + str(adv_guess)) 
+				
+    if mys_answer == mys_guess:
+        print ('Well done ')
+    else:
+        print('try again')
+        adventure_room()
+    start_adventure()
+
+
+def mystery_room():
+    image(pygame.image.load('mystery.png'))
+    print ("This is a comprehension task")
+    print ("Instructions: Read the story on the left and pick the right answers to the questions.")
+	
+	
+    cat_clouds = ["dark", "white", "black"]
+    cat_trees = ["apple", "dead", "luminous"]
+    cat_actor = ["boy", "man", "girl"]
+    cat_house = ["cottage", "stone", "metal"]
+    cat_window = ["round", "curtains", "shutters"]
+    
+    adv_guess = []
+    adv_answer = ['white', 'apple', 'boy', 'cottage', 'shutters']
+    mys_guess = []
+    mys_answer = ['dark', 'dead', 'man', 'stone', 'curtains']
+    sci_guess = []
+    sci_answer = ['black', 'luminous', 'girl', 'metal', 'round']
+    
+    	
+    #print Question
+    print("Choose what type of clouds where there on the day? 1.dark 2. white, 3. black. ")
+	    
+    # Ask player what to do.
+    clouds = input("The clouds were  > ")
+
+    # This is a way to see if the text typed by player is in the list
+		
+    for i in cat_clouds:
+        if i in clouds:
+            mys_guess.append(i)
+            print (mys_guess)
+		
+    print("Choose what type of trees there were on the day? apple, dead, luminous" )
+		
+    # Ask player what to do.
+    trees = input("The trees were  > ")
+
+    # This is a way to see if the text typed by player is in the list
+    for i in cat_trees:
+        if i in trees:
+            mys_guess.append(i)
+            print ('the answer ' + str(mys_answer))
+            print ('the guess ' + str(mys_guess))
+
+    print("Choose what type of actor there was on the day? boy, girl, man ")
+		
+    # Ask player what to do.
+    actor = input("The actor was a  > ")
+
+    # This is a way to see if the text typed by player is in the list
+    for i in cat_actor:
+        if i in actor:
+            mys_guess.append(i)
+            print ('the answer ' + str(mys_answer))
+            print ('the guess ' + str(mys_guess))
+
+    print("Choose what type of house was it? cottage, stone, metal ")
+		
+    # Ask player what to do.
+    house = input("The a house was a  > ")
+
+    # This is a way to see if the text typed by player is in the list
+    for i in cat_house:
+        if i in house:
+            mys_guess.append(i)
+            print ('the answer ' + str(mys_answer))
+            print ('the guess ' + str(mys_guess))
+
+    print("What were the windows like? round, curtains, shutters ")
+		
+    # Ask player what to do.
+    window = input("What type of windows did the house have?  > ")
+
+    # This is a way to see if the text typed by player is in the list
+    for i in cat_window:
+        if i in window:
+            mys_guess.append(i)
+            print ('the answer ' + str(mys_answer))
+            print ('the guess ' + str(mys_guess)) 
+				
+    if mys_answer == mys_guess:
+        print ('Well done ')
+    else:
+        print('try again')
+        mystery_room()
+    start_adventure()
+    
+def scifi_room():
+    image(pygame.image.load('scifi.png'))
+    print ("This is a comprehension task")
+    print ("Instructions: Read the story on the left and pick the right answers to the questions.")
+	
+	
+    cat_clouds = ["dark", "white", "black"]
+    cat_trees = ["apple", "dead", "luminous"]
+    cat_actor = ["boy", "man", "girl"]
+    cat_house = ["cottage", "stone", "metal"]
+    cat_window = ["round", "curtains", "shutters"]
+    
+    adv_guess = []
+    adv_answer = ['white', 'apple', 'boy', 'cottage', 'shutters']
+    mys_guess = []
+    mys_answer = ['dark', 'dead', 'man', 'stone', 'curtains']
+    sci_guess = []
+    sci_answer = ['black', 'luminous', 'girl', 'metal', 'round']
+    
+    	
+    #print Question
+    print("Choose what type of clouds where there on the day? 1.dark 2. white, 3. black. ")
+	    
+    # Ask player what to do.
+    clouds = input("The clouds were  > ")
+
+    # This is a way to see if the text typed by player is in the list
+		
+    for i in cat_clouds:
+        if i in clouds:
+            sci_guess.append(i)
+            print (sci_guess)
+		
+    print("Choose what type of trees there were on the day? apple, dead, luminous" )
+		
+    # Ask player what to do.
+    trees = input("The trees were  > ")
+
+    # This is a way to see if the text typed by player is in the list
+    for i in cat_trees:
+        if i in trees:
+            sci_guess.append(i)
+            print ('the answer ' + str(sci_answer))
+            print ('the guess ' + str(sci_guess))
+
+    print("Choose what type of actor there was on the day? boy, girl, man ")
+		
+    # Ask player what to do.
+    actor = input("The actor was a  > ")
+
+    # This is a way to see if the text typed by player is in the list
+    for i in cat_actor:
+        if i in actor:
+            sci_guess.append(i)
+            print ('the answer ' + str(sci_answer))
+            print ('the guess ' + str(sci_guess))
+
+    print("Choose what type of house was it? cottage, stone, metal ")
+		
+    # Ask player what to do.
+    house = input("The a house was a  > ")
+
+    # This is a way to see if the text typed by player is in the list
+    for i in cat_house:
+        if i in house:
+            sci_guess.append(i)
+            print ('the answer ' + str(sci_answer))
+            print ('the guess ' + str(sci_guess))
+
+    print("What were the windows like? round, curtains, shutters ")
+		
+    # Ask player what to do.
+    window = input("What type of windows did the house have?  > ")
+
+    # This is a way to see if the text typed by player is in the list
+    for i in cat_window:
+        if i in window:
+            sci_guess.append(i)
+            print ('the answer ' + str(sci_answer))
+            print ('the guess ' + str(sci_guess)) 
+				
+    if sci_answer == sci_guess:
+        print ('Well done ')
+    else:
+        print('try again')
+        scifi_room()
+    start_adventure()
+    
+
+    
+
+### END ROOMS ###
+
+def get_player_name():
+    # LOCAL VARIABLES
+    # The player enters their name and gets assigned to a variable called "name"
+    name = input("What's your name? > ")
+
+    # This is just an alternative name that the game wants to call the player
+    alt_name = "Rainbow Unicorn"
+    answer = input("Your name is {}, is that correct? [Y|N] > ".format(alt_name.upper()))
+    if answer.lower() in ["y", "yes"]:
+        name = alt_name
+        print("You are fun, {}! Let's begin our adventure!".format(name.upper()))
+    elif answer.lower() in ["n", "no"]:
+        print("Ok, picky. {} it is. Let's get started on our adventure.".format(name.upper()))
+    else:
+        print("Trying to be funny? Well, you will now be called {} anyway.".format(alt_name.upper()))
+        name = alt_name
+
+    # Now notice that we are returning the variable called name.
+    # In main(), it doesn't know what the variable "name" is, as it only exists in 
+    # get_player_name() function. 
+    # This is why indentation is important, variables declaadventure in this block only exists in that block
+    return name
+	
+
+def start_adventure():
+    image(pygame.image.load('introduction.png'))
+    print("Text to read")
+    print ("Choose one of the four options adventure, mystery, sci-fi, numbergame ")
+    story_picked = input("Which story do you want to read? ")
+
+    # Pick a story and we go to te story and choose options
+    if story_picked == "adventure":
+        adventure_room()
+    elif story_picked == "mystery":
+        mystery_room()
+    elif story_picked == "sci-fi":
+        scifi_room()
+    elif story_picked == "numbergame":
+        numbergame()
+    else:
+        print("Sorry, it's either 'adventure' or 'mystery' or 'sci-fi' as the answer. Try again")
+    start_adventure()
+
+def main():
+    os.system("clear")
+    # Calls get_player_name and returns the player name
+    #player_name =  get_player_name()
+    image(pygame.image.load('titlei.png'))
+    player_name =  input("What's your name? >")
+    print("Your name is " + player_name)
+
+    start_adventure()
+    
+    print("\nThe end\n")
+    print("Thanks for playing, {}".format(player_name.upper()))
+    
+
+if __name__ == '__main__':
+    main()
